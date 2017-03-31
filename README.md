@@ -20,8 +20,11 @@ section in every excercise a new button is added to complete it.
 When the click event is called following things will happen:
   - XHR request to send file which raises an execution error
     - interval with XHR request to check if the file was processed
-      - repeats whole step until there are no dupes in the parameters (todo)
   - XHR request to send file with all wrong answers
     - interval with XHR request to check if the file was processed
   - when two files were processed then prepare the body of a program
   - XHR request to send program
+  
+### TODO
+
+  - [ ] Handle dupes in the parameters
