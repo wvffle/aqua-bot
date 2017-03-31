@@ -3,7 +3,7 @@
 // @namespace   wvffle
 // @description DEUS VULT
 // @include     https://aqua.ilo.pl/team/problems.php
-// @version     1
+// @version     3
 // @grant       none
 // ==/UserScript==
 
@@ -195,9 +195,16 @@ console.log(q('table.list thead'))
 q('table.list thead tr > th:last-child a').innerHTML = 'We will take Jerusalem!'
 for (let p of problems) {
   const td = p.lastElementChild;
+  td.style.display = 'flex';
+  td.style.alignItems = 'center';
+  td.style.justifyContent = 'center';
+  td.style.background = '#333';
   if (~unsolved.indexOf(p)) {
     const name = p.children[0].textContent;
     td.setAttribute('name', name);
+  } else {
+    const tr = td.parentElement;
+    tr.parentElement.appendChild(tr);
   }
 }
 for (let u of unsolved) {
@@ -209,16 +216,16 @@ for (let u of unsolved) {
   
   const img = button.previousElementSibling;
   
-  img.style.padding = '1px';
-  img.style.background = '#333';
-  td.style.display = 'flex';
-  td.style.alignItems = 'center';
-  td.style.justifyContent = 'center';
+  img.style.display = '1px';
   button.style.height = '18px';
   button.style.background = '#333';
   button.style.color = '#fff';
   button.style.border = '0';
   button.style.cursor = 'pointer';
+  info.style.height = '18px';
+  info.style.lineHeight = '16px';
+  info.style.color = '#fff';
+  info.style.fontFamily = 'monospace';
   
   button.innerHTML = 'DEUS VULT';
   button.on('click', async ev => {
@@ -240,7 +247,7 @@ for (let u of unsolved) {
     
       info.innerHTML = 'Status: codes';
       const params = codes(d(res.responseText));
-      console.log(params)
+      console.log(params);
     
       info.innerHTML = 'Status: invalid';
       if(!(res = await form(name, invalid)))
@@ -251,7 +258,7 @@ for (let u of unsolved) {
     
       info.innerHTML = 'Status: answers';
       const answers = results(d(res.responseText));
-      console.log(answers)
+      console.log(answers);
     
       info.innerHTML = 'Status: processing';
       await form(name, process(answers, params));
@@ -269,6 +276,8 @@ for (let u of unsolved) {
           info.innerHTML = '';
           if (state !== 'green') {
             button.style.display = 'block';
+          } else {
+            tr.parentElement.appendChild(tr);
           }
         }
       
