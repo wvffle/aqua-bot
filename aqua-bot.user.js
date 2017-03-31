@@ -281,7 +281,7 @@ for (let u of unsolved) {
           }
         }
       
-    }catch(e){
+    } catch(e) {
       console.error(e);
     }
   })
