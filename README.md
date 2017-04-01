@@ -10,7 +10,7 @@ Simple *not cpp* program to hack around aqua.ilo.pl
   - weird dance
   - result of execution error correct test results
      
-### How does the bot work?
+### How does the program work?
 It is run on in the browser as a greasemonkey script. In the /team/problems.php
 section in every excercise a new button is added to complete it.
 
