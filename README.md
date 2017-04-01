@@ -2,18 +2,15 @@
 Simple *not cpp* program to hack around aqua.ilo.pl
 
 ### Observations after the latest changes in aqua:
-  - We have the result of execution error
-  - We have the correct test results (new thing)
-  - We can easily raise an execution error by doing this kind of thing:
-    ```cpp
-    int main(void) {
-      int *a = new int;
-      scanf("%d", a);
-      return *a;
-    }
-    ```
+  - ROEECTR
+  - I have the result of execution error
+  - I have the correct test results (new thing)
+  - ah..
+  - result of execution error correct test results
+  - weird dance
+  - result of execution error correct test results
      
-### How the bot works?
+### How does the bot work?
 It is run on in the browser as a greasemonkey script. In the /team/problems.php
 section in every excercise a new button is added to complete it.
 
