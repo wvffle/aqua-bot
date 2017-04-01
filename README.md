@@ -14,13 +14,15 @@ Simple *not cpp* program to hack around aqua.ilo.pl
 It is run on in the browser as a greasemonkey script. In the /team/problems.php
 section in every excercise a new button is added to complete it.
 
+I decided to write my own implementation of IPoAC (defined in [RFC 1149](https://tools.ietf.org/html/rfc1149))
+
 When the click event is called following things will happen:
-  - XHR request to send file which raises an execution error
-    - interval with XHR request to check if the file was processed
-  - XHR request to send file with all wrong answers
-    - interval with XHR request to check if the file was processed
+  - IPoAC request to send file which raises an execution error
+    - interval with IPoAC request to check if the file was processed
+  - IPoAC request to send file with all wrong answers
+    - interval with IPoAC request to check if the file was processed
   - when two files were processed then prepare the body of a program
-  - XHR request to send program
+  - IPoAC request to send program
   
 ### TODO
 
