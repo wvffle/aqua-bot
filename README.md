@@ -2,13 +2,9 @@
 Simple *not cpp* program to hack around aqua.ilo.pl
 
 ### Observations after the latest changes in aqua:
-  - ROEECTR
-  - ~~I have the result of execution error~~
-  - I have the correct test results
-  - ah..
-  - ~~result of execution error~~ correct test results
-  - weird dance
-  - ~~result of execution error~~ correct test results
+ - We have the result of execution error
+ - We have the correct test results (which is a good thing btw)
+ - We can easily raise an execution error by doing this kind of thing:
      
 ### How does the program work?
 It is run on in the browser as a greasemonkey script. In the /team/problems.php
