@@ -19,6 +19,7 @@ I decided to write my own implementation of IPoAC (defined in [RFC 1149](https:/
 When the click event is called following things will happen:
   - IPoAC request to send file which raises an execution error
     - interval with IPoAC request to check if the file was processed
+      - repeats whole step until there are no dupes in the parameters
   - IPoAC request to send file with all wrong answers
     - interval with IPoAC request to check if the file was processed
   - when two files were processed then prepare the body of a program
@@ -26,4 +27,5 @@ When the click event is called following things will happen:
   
 ### TODO
 
-  - [ ] Handle dupes in the parameters
+  - [x] Handle dupes in the parameters
+  - [ ] Add string support
