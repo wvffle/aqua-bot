@@ -28,4 +28,7 @@ When the click event is called following things will happen:
 ### TODO
 
   - [x] Handle dupes in the parameters
-  - [ ] Add string support
+  - [x] Add string support in answers
+  - [ ] Type support in parameters (detect longs, strings...)
+  - [ ] Detect if no parameters are passed
+  - [ ] Sort ifs by the length of conditions
