@@ -33,3 +33,4 @@ When the click event is called following things will happen:
   - [ ] Detect if no parameters are passed
   - [ ] Sort ifs by the length of conditions
   - [ ] Change throwing execution error to printing 3 first test parameters on standart output (less IPoAC requests)
+  - [ ] Multiline answers
