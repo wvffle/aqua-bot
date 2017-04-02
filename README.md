@@ -3,12 +3,12 @@ Simple *not cpp* program to hack around aqua.ilo.pl
 
 ### Observations after the latest changes in aqua:
   - ROEECTR
-  - I have the result of execution error
-  - I have the correct test results (new thing)
+  - ~~I have the result of execution error~~
+  - I have the correct test results
   - ah..
-  - result of execution error correct test results
+  - ~~result of execution error~~ correct test results
   - weird dance
-  - result of execution error correct test results
+  - ~~result of execution error~~ correct test results
      
 ### How does the program work?
 It is run on in the browser as a greasemonkey script. In the /team/problems.php
@@ -32,3 +32,4 @@ When the click event is called following things will happen:
   - [ ] Type support in parameters (detect longs, strings...)
   - [ ] Detect if no parameters are passed
   - [ ] Sort ifs by the length of conditions
+  - [ ] Change throwing execution error to printing 3 first test parameters on standart output (less IPoAC requests)
