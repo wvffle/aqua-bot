@@ -1,9 +1,10 @@
 // ==UserScript==
 // @name        aqua-bot
 // @namespace   wvffle
-// @description DEUS VULT
+// @author wvffle <casper@wvffle.net>
+// @description Simple *not cpp* bot to hack around aqua.ilo.pl 
 // @include     https://aqua.ilo.pl/team/problems.php
-// @version     4
+// @version     1.0
 // @grant       none
 // ==/UserScript==
 
@@ -20,6 +21,11 @@ EventTarget.prototype.on = function(event, listener) {
   return this.addEventListener(event, listener);
 }
 
+const BASE_URL = '/team'
+const UPLOAD_URL = `${BASE_URL}/upload.php`;
+const RESULT_URL = `${BASE_URL}/zgloszenia.php`;
+const PROBLEMS_URL = `${BASE_URL}/problems.php`;
+
 const license = [
   '\n// Licensed under MIT license\n\n',
   '\/*\n * I was able to generate this file with my awesome *not cpp* bot after these observations:\n',
@@ -31,8 +37,8 @@ const license = [
   ' *       scanf("%d", a);\n',
   ' *       return *a;\n',
   ' *     }\n *\n',
-  ' * How the bot works?\n',
-  ' * It is run on in the browser as a greasemonkey script. In the /team/problems.php\n',
+  ' * How does the bot work?\n',
+  ` * It is run on in the browser as a greasemonkey script. In the ${PROBLEMS_URL}\n`,
   ' * section in every excercise a new button is added to complete it.\n',
   ' * When the click event is called following things will happen:\n',
   ' *   - XHR request to send file which raises an execution error\n',
@@ -41,15 +47,11 @@ const license = [
   ' *   - XHR request to send file with all wrong answers\n',
   ' *     - interval with XHR request to check if the file was processed\n',
   ' *   - when two files were processed then prepare the body of a program\n',
-  ' *   - XHR request to send program\n',
+  ' *   - XHR request to send program\n *\n',
+  ' * With love — wvffle\n',
   ' */\n\n',
   '// Source: https://github.com/wvffle/aqua-bot\n\n',
 ].join('');
-
-const BASE_URL = '/team'
-const UPLOAD_URL = `${BASE_URL}/upload.php`;
-const RESULT_URL = `${BASE_URL}/zgloszenia.php`;
-const PROBLEMS_URL = `${BASE_URL}/problems.php`;
 
 const invalid = [
   '#include<cstdio>\n',
@@ -202,9 +204,12 @@ const process = (answers, params) => {
   let i = 0;
   for (let param in params) {
     if (!params.hasOwnProperty(param)) continue;
-    const answer = answers[i];
     const condition = [];
+    let answer = answers[i];
     param = params[param] instanceof Array ? params[param] : [params[param]];
+    
+    if (isNaN(+answer)) answer = `"${answer}"`;
+    if (isNaN(+param))  param  = `"${param}"`;
     
     param.forEach((a,j) => {
       condition.push(`*a${j} == ${a}`);
