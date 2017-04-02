@@ -4,7 +4,7 @@
 // @author wvffle <casper@wvffle.net>
 // @description Simple *not cpp* bot to hack around aqua.ilo.pl 
 // @include     https://aqua.ilo.pl/team/problems.php
-// @version     1.0
+// @version     1.0.1
 // @grant       none
 // ==/UserScript==
 
@@ -206,10 +206,13 @@ const process = (answers, params) => {
     if (!params.hasOwnProperty(param)) continue;
     const condition = [];
     let answer = answers[i];
-    param = params[param] instanceof Array ? params[param] : [params[param]];
-    
     if (isNaN(+answer)) answer = `"${answer}"`;
-    if (isNaN(+param))  param  = `"${param}"`;
+    
+    param = params[param] instanceof Array ? params[param] : [params[param]];
+    param = param.map(e => isNaN(+e) ? `"${e}"` : e);
+                      
+    
+    console.log(param);
     
     param.forEach((a,j) => {
       condition.push(`*a${j} == ${a}`);
