@@ -25,7 +25,7 @@ When the click event is called following things will happen:
 
   - [x] Handle dupes in the parameters
   - [x] Add string support in answers
-  - [ ] Type support in parameters
+  - [x] Type support in parameters
   - [x] Bypass answer types simply by putting anwsers to strings
   - [ ] Detect if no parameters are passed
   - [x] Multiline answers
