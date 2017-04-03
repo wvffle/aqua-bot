@@ -1,6 +1,6 @@
 # List of bugs in aqua
 
-#### Test difference
+### Test difference
  - No difference is shown after about 2000 wrong answers (sql limit?)
    - Due to this bug, I cannot generate whole set of correct answers in some problems... That's kind of irritating...
  - Empty string answer is not quoted (not identity check?)
