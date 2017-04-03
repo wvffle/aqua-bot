@@ -1,10 +1,10 @@
-// ==UserScript==
+  // ==UserScript==
 // @name        aqua-bot
 // @namespace   wvffle
 // @author wvffle <casper@wvffle.net>
 // @description Simple *not cpp* bot to hack around aqua.ilo.pl 
 // @include     https://aqua.ilo.pl/team/problems.php
-// @version     1.0.1
+// @version     1.0.3
 // @grant       none
 // ==/UserScript==
 
@@ -57,7 +57,7 @@ const invalid = [
   '#include<cstdio>\n',
   license,
   'int main(void) {\n',
-  '  printf("");\n',
+  '  printf("wvffle");\n',
   '}\n',
 ].join('');
 
@@ -96,8 +96,7 @@ const codes = (doc, flat) => {
   const diff = [].slice.call(q('#testResults tbody').children)
     .map(e => e.children[2])
     .filter(e => e != null)
-    .map(e => e.getAttribute('title').match(/\d+/))
-    .filter(e => e != null);
+    .map(e => e.getAttribute('title').match(/\d+/) || ['0']);
   
   
   /**
@@ -110,14 +109,14 @@ const codes = (doc, flat) => {
      * Exact index is needed, so we cannot filter out it in `diff`
      */
     let d = diff[i];
-    if (d == null) continue;
+    if (d === undefined) continue;
     d = d[0];
     
     if (flat === true) {
       dupes[i] = d;
       continue;
     }
-    dupes[d] == null && (dupes[d] = []);
+    dupes[d] === undefined && (dupes[d] = []);
     dupes[d].push(i);
     
   }
@@ -132,9 +131,13 @@ const results = doc => {
   const res = [];
   const diff = [].slice.call(q('#testResults tbody').children)
     .map(e => e.children[3])
-    .filter(e => e != null);
+    .filter(e => e != null)
+    .map(e => e.children[0]);
   
-  for (let d of diff) res.push(d.textContent.split('\'')[1]);
+  for (let d of diff) {
+    const lines = d.innerHTML.split('<br>');
+    res.push(lines.map(e => e.split('\'')[1]).filter(e => e === 0 || e != null));
+  }
   return res;
 }
 
@@ -177,7 +180,6 @@ const check = () => {
     
       const td = q('table.list tbody tr td:last-of-type');
       if (td.colSpan == 2) {
-        console.log(+new Date%2?'DEUS':'VULT');
         continue final;
       }
       console.log('!');
@@ -205,8 +207,7 @@ const process = (answers, params) => {
   for (let param in params) {
     if (!params.hasOwnProperty(param)) continue;
     const condition = [];
-    let answer = answers[i];
-    if (isNaN(+answer)) answer = `"${answer}"`;
+    let answer = `"${answers[i].join('\\n')}"`;
     
     param = params[param] instanceof Array ? params[param] : [params[param]];
     param = param.map(e => isNaN(+e) ? `"${e}"` : e);
@@ -293,7 +294,7 @@ for (let u of unsolved) {
         res = await check();
         if(!res) return info.innerHTML = 'Status: error';
     
-        info.innerHTML = `Status: codes (${iteration})`;
+        info.innerHTML = `Status: exception (${1 + iteration})`;
         const params = codes(d(res.responseText), !!(iteration - 1));
         if (iteration === 1) {
           console.log(params)
@@ -312,29 +313,44 @@ for (let u of unsolved) {
             }
           }
         } else {
+          console.log('$', dcheck)
           console.log(dparam)
           const _dcheck = [];
+          let nah = Object.keys(params).map(e => params[e]);
           for (let group of dcheck) {
-            const meh = [];
+            let meh = [];
             const last_index = group.length - 1;
-            group.map(e => params[e]).forEach((e,i) => {
-              const is_dupe = group.indexOf(e) === i;
+            const _group = group.map(e => params[e]);
+            _group.forEach((e,i) => {
+              const is_dupe = _group.indexOf(e) !== i;
+              console.log(is_dupe, !~meh.indexOf(e))
               if (is_dupe) {
                 if (!~meh.indexOf(e)) {
                   meh.push(e);
                 }
               }
             });
-            if (meh.length) _dcheck.push(meh.filter((e,i) => meh.indexOf(e) === i))
-            else group.forEach(e => {
+            if (meh.length) {
+              meh = meh.map(e => {
+                return nah.map((g,i) => {
+                  return g == e ? i : -1;
+                }).filter(g => {
+                  console.log('%', !!~g, !~group.indexOf(g), group)
+                  return ~g && ~group.indexOf(g)
+                });
+              })
+              console.log('#', meh);
+              [].push.apply(_dcheck, meh)
+            }
+            group.forEach(e => {
               console.log(e, dparam[e]);
               dparam[e].push(params[e]);
             })
-            console.log(meh, meh.map(e => params[e]))
           }
           dcheck = _dcheck;
           console.log(dcheck);
           console.log(dparam)
+          //if (iteration > 3) return;
         }
         
         if (Object.keys(dcheck).length !== 0) continue meh;              
