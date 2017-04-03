@@ -21,6 +21,9 @@ When the click event is called following things will happen:
   - when two files were processed then prepare the body of a program
   - IPoAC request to send program
   
+### Bugs of aqua
+Every found aqua bug is described inside `bugs.md` file
+  
 ### TODO
 
   - [x] Handle dupes in the parameters
