@@ -4,7 +4,7 @@
 // @author wvffle <casper@wvffle.net>
 // @description Simple *not cpp* bot to hack around aqua.ilo.pl 
 // @include     https://aqua.ilo.pl/team/problems.php
-// @version     1.0.3
+// @version     1.0.4
 // @grant       none
 // ==/UserScript==
 
@@ -76,15 +76,16 @@ const exception = args => {
 const program = args => {
   const res =  [
     '#include<iostream>\n',
+    '#include<string>\n',
     license,
     'int main(void) {\n',
   ]
   for (let i = 0; i < args; ++i) {
-    res.push(`  int *a${i} = new int;\n`);
+    res.push(`  std::string a${i};\n`);
   }
   res.push('\n');
   for (let i = 0; i < args; ++i) {
-    res.push(`  std::cin >> *a${i};\n`);
+    res.push(`  std::cin >> a${i};\n`);
   }
   res.push('\n');
   return res;
@@ -136,7 +137,7 @@ const results = doc => {
   
   for (let d of diff) {
     const lines = d.innerHTML.split('<br>');
-    res.push(lines.map(e => e.split('\'')[1]).filter(e => e === 0 || e != null));
+    res.push(lines.map(e => e.split('\'')[3]).filter(e => e === 0 || e != null));
   }
   return res;
 }
@@ -210,13 +211,13 @@ const process = (answers, params) => {
     let answer = `"${answers[i].join('\\n')}"`;
     
     param = params[param] instanceof Array ? params[param] : [params[param]];
-    param = param.map(e => isNaN(+e) ? `"${e}"` : e);
+    param = param.map(e => `"${e}"`);
                       
     
     console.log(param);
     
     param.forEach((a,j) => {
-      condition.push(`*a${j} == ${a}`);
+      condition.push(`a${j}.compare(${a}) == 0`);
     });
     
     res.push();
