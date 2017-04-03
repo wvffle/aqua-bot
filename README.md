@@ -26,8 +26,6 @@ When the click event is called following things will happen:
   - [x] Handle dupes in the parameters
   - [x] Add string support in answers
   - [ ] Type support in parameters
-  - [ ] Bypass answer types simply by putting anwsers to strings
+  - [x] Bypass answer types simply by putting anwsers to strings
   - [ ] Detect if no parameters are passed
-  - [ ] Sort ifs by the length of conditions
-  - [ ] Change throwing execution error to printing 3 first test parameters on standart output (less IPoAC requests)
   - [ ] Multiline answers
