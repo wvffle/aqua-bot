@@ -32,4 +32,4 @@ Every found aqua bug is described inside `bugs.md` file
   - [x] Bypass answer types simply by putting anwsers to strings
   - [ ] Detect if no parameters are passed
   - [x] Multiline answers
-  - [ ] Report bugs to the admin
+  - [ ] Report critical bugs to the admin
