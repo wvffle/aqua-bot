@@ -30,7 +30,7 @@ When the click event is called following things will happen:
       - update view with results
   
 ### Bugs of aqua
-Every found bug of aqua is described inside [bugs.md](/bugs.md) file
+Every bug found in aqua is described inside [bugs.md](/bugs.md) file
   
 ### TODO
 
