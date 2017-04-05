@@ -29,7 +29,7 @@ When the click event is called following things will happen:
     - interval with XHR to check if file was processed
       - update view with results
   
-### Bugs of aqua
+### Bugs in aqua
 Every bug found in aqua is described inside [bugs.md](/bugs.md) file
   
 ### TODO
