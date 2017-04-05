@@ -5,7 +5,7 @@ Simple *not cpp* program to hack around aqua.ilo.pl
  - We have the result of execution error
  - We have the correct test results (which is a good thing btw)
  - ~~We can easily raise an execution error by doing this kind of thing:~~
-   ```
+   ```cpp
    int main(void) {
      int a;
      std::cin >> a;
