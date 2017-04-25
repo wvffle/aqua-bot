@@ -41,3 +41,4 @@ Every bug found in aqua is described inside [bugs.md](/bugs.md) file
   - [ ] Detect if no parameters are passed
   - [x] Multiline answers
   - [x] Report critical bugs to the admin
+  - [ ] Add shitty code generator to reduce code similarity
