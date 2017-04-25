@@ -1,4 +1,4 @@
-  // ==UserScript==
+// ==UserScript==
 // @name        aqua-bot
 // @namespace   wvffle
 // @author wvffle <casper@wvffle.net>
@@ -7,6 +7,8 @@
 // @version     1.0.4
 // @grant       none
 // ==/UserScript==
+
+// Przemek, wez oblicz mi maksymalna zlozonosc jaka tu jest, bo nie wiem, czy mam dobrze zoptymalizowane...
 
 const q = document.querySelector.bind(document);
 const e = document.createElement.bind(document);
