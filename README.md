@@ -1,6 +1,10 @@
 # aqua-bot
 Simple *not cpp* program to hack around aqua.ilo.pl
 
+### Achievement get!
+As of 26-04-2017 we cannot get correct answers anymore!<br>
+<sub>(But I heard that you will have to pass captcha if you want to see correct answers :3)</sub>
+
 ### Observations after the latest changes in aqua:
  - We have the result of execution error
  - We have the correct test results (which is a good thing btw)
